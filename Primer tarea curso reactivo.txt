@@ -1,0 +1,76 @@
+public interface Operacion {
+        double calcularMayor(double n1, double n2);
+    }
+
+    public void calcular(){
+        Operacion operacion = new Operacion (){
+            @Override
+            public double calcularMayor(double n1, double n2) {
+                if(n1>n2)
+                    return n1;
+                else
+                    return n2;
+            }
+        };
+        System.out.println(operacion.calcularMayor(2,3));
+    }
+
+    public void calcular2(){
+        Operacion operacion = (a,b) -> {
+            if(a>b)
+                return a;
+            else
+                return b;
+        };
+        System.out.println(operacion.calcularMayor(2,3));
+    }
+-----#2
+public interface Operacion {
+        double calcularDescuento(double n1, double n2);
+    }
+
+    public void calcular (){
+        Operacion operacion = new Operacion (){
+            @Override
+            public double calcularDescuento(double valor, double dcto){
+                return valor*(1-dcto);
+            }
+        };
+        System.out.println(operacion.calcularDescuento(10,0.3));
+    }
+
+    public void calcular2(){
+        Operacion operacion = (valor,dcto) -> {
+            return valor*(1-dcto);
+        };
+        System.out.println(operacion.calcularDescuento(20,0.5));
+    }
+
+
+----#3
+public interface Operacion {
+double calcularIva(double n1, double n2);
+
+static double calcularIva(double n1) {
+return n1*1.21;
+}
+}
+
+public static void calcular (){
+Operacion operacion = new Operacion (){
+@Override
+public double calcularIva(double valor, double iva){
+return valor + (valor*iva);
+}
+};
+System.out.println(operacion.calcularIva(10,0.3));
+System.out.println(Operacion.calcularIva(10));
+}
+
+public static void calcular2(){
+Operacion operacion = (valor, iva) -> {
+return valor + (valor*iva);
+};
+System.out.println(operacion.calcularIva(10,0.3));
+System.out.println(Operacion.calcularIva(10));
+}
